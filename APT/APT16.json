@@ -1,0 +1,564 @@
+{
+    "type": "bundle",
+    "id": "bundle--56be2a3b-1534-4bef-8fe9-602926274089",
+    "objects": [
+        {
+            "type": "campaign",
+            "spec_version": "2.1",
+            "id": "campaign--d81f86b9-975b-4c0b-875e-810c5ad45a4f",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "Social engeneering",
+            "description": "This ongoing campaign targets a number of Taiwanese media and entertainment industries",
+            "aliases": [
+                "SE"
+            ],
+            "first_seen": "2021-03-10T12:00:00.000Z",
+            "objective": "The Chinese government would benefit from improved insight into local media coverage of Taiwanese politics, both to better anticipate the election outcome and to gather additional intelligence on politicians"
+        },
+        {
+            "type": "intrusion-set",
+            "spec_version": "2.1",
+            "id": "intrusion-set--9a8a0d25-7636-429b-a99e-b2a73cd0f11f",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "APT16",
+            "aliases": "SVCMONDR",
+            "description": "APT16 is a organization of operators that has conducted a cyber espionage campaign against Japanese and Taiwanese organizations in the financial services, high-tech, media and government sectors respectively.",
+            "primary_motivation": "espionage",
+            "threat_actor_types": [
+                "spy",
+                "criminal"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a932fcc6-e032-476c-826f-cb970a5a1adb",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "2015台灣安全文化論壇邀請函",
+            "description": "This e-mail subject is associated with malicious activity.",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "spear phishing messages with the subject “2015 Taiwan Security and Cultural Forum Invitation Form” (2015台灣安全文化論壇邀請函)",
+            "pattern_type": "stix",
+            "valid_from": "2015-12-01T12:00:00Z"
+        },
+        {
+            "type": "location",
+            "id": "location--07608992-927e-434c-9cbd-bf45274290a0",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "country": "China"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--8ac90ff3-ecf8-4835-95b8-6aea6a623df5",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "Phishing",
+            "description": "China-based advanced persistent threat (APT) groups sent phishing emails containing malicious Word attachments."
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--8ac90ff3-ecf8-4835-95b8-6aea6a623db4",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "Privilege Escalation",
+            "description": "Escalating privileges involves acquiring items (most often usernames and passwords) that will allow access to more resources within the network.",
+            "kill_chin_phases": [
+                "escalate-privileges"
+            ]
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--162d917e-766f-4611-b5d6-652791454fca",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "ELMER",
+            "description": "ELMER is a non-persistent proxy-aware HTTP backdoor written in Delphi, and is capable of performing file uploads and downloads, file execution, and process and directory listings.This is based on the use of the known APT16 domain rinpocheinfo[.]com.",
+            "implemenmtation_languages": "Delphi",
+            "capabilities": "The ELMER Backdoor Trojan can execute files, download files from a remote location, map folders on the system drives, list the running processes, and upload files to the 'Command and Control' server. Each campaign delivered a malicious Microsoft Word document exploiting the aforementioned EPS dict copy use-after-free vulnerability, and the local Windows privilege escalation vulnerability CVE-2015-1701",
+            "malware_types": [
+                "backdoor",
+                "remote-access-trojan"
+            ],
+            "is_family": false,
+            "operating_system_refs": [
+                "Windows"
+            ]
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--162d917e-766f-4611-b5d6-6527914541bd",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "ELMER Variant (6c33223db475f072119fe51a2437a542)",
+            "description": "The ELMER variant 6c33223db475f072119fe51a2437a542 beaconed to the CnC IP address 121.127.249.74 over port 443.",
+            "implemenmtation_languages": "Delphi",
+            "capabilities": "The ELMER Backdoor Trojan can execute files, download files from a remote location, map folders on the system drives, list the running processes, and upload files to the 'Command and Control' server. Each campaign delivered a malicious Microsoft Word document exploiting the aforementioned EPS dict copy use-after-free vulnerability, and the local Windows privilege escalation vulnerability CVE-2015-1701",
+            "malware_types": [
+                "backdoor",
+                "remote-access-trojan"
+            ],
+            "is_family": false,
+            "operating_system_refs": [
+                "Windows"
+            ]
+        },
+                {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--162d917e-766f-4611-b5d6-652791454vgr",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "ELMER Variant (0b176111ef7ec98e651ffbabf9b35a18)",
+            "description": "The ELMER variant 0b176111ef7ec98e651ffbabf9b35a18 beaconed to the CnC domain news.rinpocheinfo[.]com over port 443.",
+            "implemenmtation_languages": "Delphi",
+            "capabilities": "The ELMER Backdoor Trojan can execute files, download files from a remote location, map folders on the system drives, list the running processes, and upload files to the 'Command and Control' server. Each campaign delivered a malicious Microsoft Word document exploiting the aforementioned EPS dict copy use-after-free vulnerability, and the local Windows privilege escalation vulnerability CVE-2015-1701",
+            "malware_types": [
+                "backdoor",
+                "remote-access-trojan"
+            ],
+            "is_family": false,
+            "operating_system_refs": [
+                "Windows"
+            ]
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--162d917e-766f-4611-b5d6-652791454fcb",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "IRONHALO",
+            "description": "IRONHALO is a downloader that uses the HTTP protocol to retrieve a Base64 encoded payload from a hard-coded command-and-control (CnC) server and uniform resource locator (URL) path. The encoded payload is written to a temporary file, decoded and executed in a hidden window. The encoded and decoded payloads are written to files named igfxHK[%rand%].dat and igfxHK[%rand%].exe respectively, where [%rand%] is a 4-byte hexadecimal number based on the current timestamp. It persists by copying itself to the current user’s Startup folder",
+            "implemenmtation_languages": "Delphi",
+            "malware_types": [
+                "downloader",
+                "remote-access-trojan"
+            ],
+            "is_family": false,
+            "operating_system_refs": [
+                "Windows"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a932fcc6-e032-476c-826f-cb970a5a1ade",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "mts03282000@yahoo.co[.]jp",
+            "description": "This e-mail address is associated with malicious activity.",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "e-mail: [mts03282000@yahoo.co[.]jp, subject: “新年号巻頭言の送付” (Google Translation: Sending of New Year No. Foreword).]",
+            "pattern_type": "stix",
+            "valid_from": "2015-11-26T12:00:00Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a932fcc6-e032-476c-826f-cb937a1a1adb",
+            "created": "2014-02-20T09:16:08.989Z",
+            "modified": "2014-02-20T09:16:08.989Z",
+            "name": "dpptccb.dpp@msa.hinet[.]net",
+            "description": "This e-mail address is associated with malicious activity.",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[e-mail: dpptccb.dpp@msa.hinet[.]net, subject:  'DPP's Contact Information Update'.]",
+            "pattern_type": "stix",
+            "valid_from": "2015-12-01T12:00:00Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a932fcc6-e032-476c-826f-vb970a5a1acg",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "igfxHK[%rand%].dat",
+            "description": "[%rand%] is a 4-byte hexadecimal number based on the current timestamp.",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file: igfxHK[%rand%].dat]",
+            "valid_from": "2015-12-01T12:00:00Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a932fcc6-e032-476c-826f-vb970a5a1sjt",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "igfxHK[%rand%].exe",
+            "description": "[%rand%] is a 4-byte hexadecimal number based on the current timestamp.",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file: igfxHK[%rand%].exe]",
+            "valid_from": "2015-12-01T12:00:00Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a932fcc6-e032-476c-826f-vb970a5a1stf",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "AcroRd32Info.exe.exe",
+            "description": "",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file: AcroRd32Info.exe.exe]",
+            "valid_from": "2015-12-01T12:00:00Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a932fcc6-e032-476c-826f-vb970a5a1apr",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "MD5 Hash: a8ccb2fc5fec1b89f778d93096f8dd65",
+            "description": "",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[MD5 Hash: a8ccb2fc5fec1b89f778d93096f8dd65]",
+            "valid_from": "2015-12-01T12:00:00Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a932fcc6-e032-476c-826f-vb970a5a1abc",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "rinpocheinfo[.]com",
+            "description": "China based used domain.",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[domain-name: rinpocheinfo[.]com]",
+            "valid_from": "2015-12-01T12:00:00Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a932fcc6-e032-476c-826f-vb97525a1abx",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "121.127.249.74",
+            "description": "ELMER variant 6c33223db475f072119fe51a2437a542 beaconed to the CnC IP address 121.127.249.74 over port 443.",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ipv4-addr: value = '121.127.249.74']",
+            "valid_from": "2015-12-01T12:00:00Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a932fcc6-e032-476c-826f-vb970a5a31bc",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "news.rinpocheinfo[.]com",
+            "description": "ELMER variant 0b176111ef7ec98e651ffbabf9b35a18 beaconed to the CnC domain news.rinpocheinfo[.]com over port 443.",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[domain-name: value = 'news.rinpocheinfo[.]com']",
+            "valid_from": "2015-12-01T12:00:00Z"
+        },
+        {
+            "type": "tool",
+            "spec_version": "2.1",
+            "id": "tool--162d917e-766f-4611-b5d6-652791454fhk",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "DOORJAMB",
+            "description": "",
+            "kill_chin_phases": [
+                "escalate-privileges"
+            ]
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--c7cab3fb-0822-43a5-b1ba-c9bab34361a2",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "CVE-2015-1701",
+            "description": "Windows privilege escalation vulnerability",
+            "external_references": [
+                    {
+                        "source_name": "cve",
+                        "external_id": "CVE-2015-1701"
+                    }
+                ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--e33ffe07-2f4c-48d8-b0af-ee2619d765cf",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "name": "APT16: Exposing One of China based Cyber Espionage groups",
+            "report_types": [
+              "threat-report",
+              "threat-actor"
+            ],
+            "published": "2021-03-10T12:00:00.000Z",
+            "description": "Between November 26, 2015, and December 1, 2015, known and suspected China-based APT groups launched several spear phishing attacks targeting Japanese and Taiwanese organizations in the high-tech, government services, media and financial services industries. Each campaign delivered a malicious Microsoft Word document exploiting the aforementioned EPS dict copy use-after-free vulnerability, and the local Windows privilege escalation vulnerability CVE-2015-1701. The successful exploitation of both vulnerabilities led to the delivery of either a downloader that we refer to as IRONHALO, or a backdoor that we refer to as ELMER.",
+            "object_refs": [
+                "campaign--d81f86b9-975b-4c0b-875e-810c5ad45a4f",
+                "attack-pattern--8ac90ff3-ecf8-4835-95b8-6aea6a623df5",
+                "attack-pattern--8ac90ff3-ecf8-4835-95b8-6aea6a623db4",
+                "vulnerability--c7cab3fb-0822-43a5-b1ba-c9bab34361a2",
+                "malware--162d917e-766f-4611-b5d6-652791454fca",
+                "malware--162d917e-766f-4611-b5d6-6527914541bd",
+                "malware--162d917e-766f-4611-b5d6-652791454vgr",
+                "malware--162d917e-766f-4611-b5d6-652791454fcb",
+                "intrusion-set--9a8a0d25-7636-429b-a99e-b2a73cd0f11f",
+                "tool--162d917e-766f-4611-b5d6-652791454fhk",
+                "indicator--a932fcc6-e032-476c-826f-cb970a5a1ade",
+                "indicator--a932fcc6-e032-476c-826f-cb937a1a1adb",
+                "indicator--a932fcc6-e032-476c-826f-cb970a5a1adb",
+                "indicator--a932fcc6-e032-476c-826f-vb970a5a1abc",
+                "indicator--a932fcc6-e032-476c-826f-vb970a5a1sjt",
+                "indicator--a932fcc6-e032-476c-826f-vb970a5a1acg",
+                "indicator--a932fcc6-e032-476c-826f-vb97525a1abx",
+                "indicator--a932fcc6-e032-476c-826f-vb970a5a31bc",
+                "indicator--a932fcc6-e032-476c-826f-vb970a5a1stf",
+                "indicator--a932fcc6-e032-476c-826f-vb970a5a1apr"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--864af2ea-46f9-4d23-b3a2-1c2adf81c265",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "used to",
+            "source_ref": "campaign--d81f86b9-975b-4c0b-875e-810c5ad45a4f",
+            "target_ref": "attack-pattern--8ac90ff3-ecf8-4835-95b8-6aea6a623df5"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b87",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "uses",
+            "source_ref": "intrusion-set--9a8a0d25-7636-429b-a99e-b2a73cd0f11f",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454fca"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b15",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a932fcc6-e032-476c-826f-vb970a5a1abc",
+            "target_ref": "intrusion-set--9a8a0d25-7636-429b-a99e-b2a73cd0f11f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b32",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a932fcc6-e032-476c-826f-cb937a1a1adb",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454vgr"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b32",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a932fcc6-e032-476c-826f-vb970a5a1acg",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454fcb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b32",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a932fcc6-e032-476c-826f-vb970a5a1sjt",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454fcb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b32",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a932fcc6-e032-476c-826f-vb970a5a1stf",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454fcb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b32",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a932fcc6-e032-476c-826f-vb970a5a1apr",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454fcb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b32",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a932fcc6-e032-476c-826f-cb970a5a1ade",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454fcb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b32",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a932fcc6-e032-476c-826f-vb970a5a31bc",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454vgr"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b32",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a932fcc6-e032-476c-826f-cb970a5a1adb",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454vgr"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b32",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a932fcc6-e032-476c-826f-vb97525a1abx",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-6527914541bd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b21",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "uses",
+            "source_ref": "intrusion-set--9a8a0d25-7636-429b-a99e-b2a73cd0f11f",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454fcb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b21",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "uses",
+            "source_ref": "intrusion-set--9a8a0d25-7636-429b-a99e-b2a73cd0f11f",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454fca"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b21",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "uses",
+            "source_ref": "intrusion-set--9a8a0d25-7636-429b-a99e-b2a73cd0f11f",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-6527914541bd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b21",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "uses",
+            "source_ref": "intrusion-set--9a8a0d25-7636-429b-a99e-b2a73cd0f11f",
+            "target_ref": "malware--162d917e-766f-4611-b5d6-652791454vgr"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b810",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "uses",
+            "source_ref": "intrusion-set--9a8a0d25-7636-429b-a99e-b2a73cd0f11f",
+            "target_ref": "campaign--d81f86b9-975b-4c0b-875e-810c5ad45a4f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b811",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "targets",
+            "source_ref": "attack-pattern--8ac90ff3-ecf8-4835-95b8-6aea6a623db4",
+            "target_ref": "vulnerability--c7cab3fb-0822-43a5-b1ba-c9bab34361a2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b811",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "targets",
+            "source_ref": "campaign--d81f86b9-975b-4c0b-875e-810c5ad45a4f",
+            "target_ref": "vulnerability--c7cab3fb-0822-43a5-b1ba-c9bab34361a2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d44019b6-b8f7-4cb3-837e-7fd3c5724b812",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "located-at",
+            "source_ref": "intrusion-set--9a8a0d25-7636-429b-a99e-b2a73cd0f11f",
+            "target_ref": "location--07608992-927e-434c-9cbd-bf45274290a0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3cd2d6f9-0ded-486b-8dca-606283a8997f",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--9a8a0d25-7636-429b-a99e-b2a73cd0f11f",
+            "target_ref": "attack-pattern--8ac90ff3-ecf8-4835-95b8-6aea6a623df5"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--864af2ea-46f9-4d23-b3a2-1c2adf81c265",
+            "created": "2021-03-10T12:00:00.000Z",
+            "modified": "2021-03-10T12:00:00.000Z",
+            "relationship_type": "uses",
+            "source_ref": "attack-pattern--8ac90ff3-ecf8-4835-95b8-6aea6a623db4",
+            "target_ref": "tool--162d917e-766f-4611-b5d6-652791454fhk"
+        }
+    ]
+}
