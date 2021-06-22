@@ -1,0 +1,1148 @@
+{
+"type": "bundle",
+"id": "bundle--f7cdadd5-24c2-49ee-afbc-a807d33dc5dd",
+"objects": [
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--910906dd-8c0a-475a-9cc1-5e029e2fad58",
+    "created": "2020-01-24T14:07:56.276Z",
+    "modified": "2020-05-05T12:02:45.522Z",
+    "name": "Windows Management Instrumentation Event Subscription",
+    "description": "Adversaries may establish persistence and elevate privileges by executing malicious content triggered by a Windows Management Instrumentation (WMI) event subscription. WMI can be used to install event filters, providers, consumers, and bindings that execute code when a defined event occurs. Examples of events that may be subscribed to are the wall clock time, user loging, or the computer's uptime. (Citation: Mandiant M-Trends 2015)\n\nAdversaries may use the capabilities of WMI to subscribe to an event and execute arbitrary code when that event occurs, providing persistence on a system. (Citation: FireEye WMI SANS 2015) (Citation: FireEye WMI 2015) Adversaries may also compile WMI scripts into Windows Management Object (MOF) files (.mof extension) that can be used to create a malicious subscription. (Citation: Dell WMI Persistence) (Citation: Microsoft MOF May 2018)\n\nWMI subscription execution is proxied by the WMI Provider Host process (WmiPrvSe.exe) and thus may result in elevated SYSTEM privileges.",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "persistence"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--34e793de-0274-4982-9c1a-246ed1c19dee",
+    "created": "2020-02-04T19:17:41.767Z",
+    "modified": "2020-09-01T20:05:05.268Z",
+    "name": "Windows File and Directory Permissions Modification",
+    "description": "Adversaries may modify file or directory permissions/attributes to evade access control lists (ACLs) and access protected files.(Citation: Hybrid Analysis Icacls1 June 2018)(Citation: Hybrid Analysis Icacls2 May 2018) File and directory permissions are commonly managed by ACLs configured by the file or directory owner, or users with the appropriate permissions. File and directory ACL implementations vary by platform, but generally explicitly designate which users or groups can perform which actions (read, write, execute, etc.).\n\nWindows implements file and directory ACLs as Discretionary Access Control Lists (DACLs).(Citation: Microsoft DACL May 2018) Similar to a standard ACL, DACLs identifies the accounts that are allowed or denied access to a securable object. When an attempt is made to access a securable object, the system checks the access control entries in the DACL in order. If a matching entry is found, access to the object is granted. Otherwise, access is denied.(Citation: Microsoft Access Control Lists May 2018)\n\nAdversaries can interact with the DACLs using built-in Windows commands, such as `icacls`, `cacls`, `takeown`, and `attrib`, which can grant adversaries higher permissions on specific files and folders. Further, [PowerShell](https://attack.mitre.org/techniques/T1059/001) provides cmdlets that can be used to retrieve or modify file and directory DACLs. Specific file and directory modifications may be a required step for many techniques, such as establishing Persistence via [Accessibility Features](https://attack.mitre.org/techniques/T1546/008), [Boot or Logon Initialization Scripts](https://attack.mitre.org/techniques/T1037), or tainting/hijacking other instrumental binary/configuration files via [Hijack Execution Flow](https://attack.mitre.org/techniques/T1574).",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "defense-evasion"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--8982a661-d84c-48c0-b4ec-1db29c6cf3bc",
+    "created": "2020-10-02T17:08:57.386Z",
+    "modified": "2020-10-24T04:12:48.152Z",
+    "name": "Spearphishing Attachment",
+    "description": "Before compromising a victim, adversaries may send spearphishing messages with a malicious attachment to elicit sensitive information that can be used during targeting. Spearphishing for information is an attempt to trick targets into divulging information, frequently credentials or other actionable information. Spearphishing for information frequently involves social engineering techniques, such as posing as a source with a reason to collect information (ex: [Establish Accounts](https://attack.mitre.org/techniques/T1585) or [Compromise Accounts](https://attack.mitre.org/techniques/T1586)) and/or sending multiple, seemingly urgent messages.\n\nAll forms of spearphishing are electronically delivered social engineering targeted at a specific individual, company, or industry. In this scenario, adversaries attach a file to the spearphishing email and usually rely upon the recipient populating information then returning the file.(Citation: Sophos Attachment)(Citation: GitHub Phishery) The text of the spearphishing email usually tries to give a plausible reason why the file should be filled-in, such as a request for information from a business associate. Adversaries may also use information from previous reconnaissance efforts (ex: [Search Open Websites/Domains](https://attack.mitre.org/techniques/T1593) or [Search Victim-Owned Websites](https://attack.mitre.org/techniques/T1594)) to craft persuasive and believable lures.",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "reconnaissance"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--f7c0689c-4dbd-489b-81be-7cb7c7079ade",
+    "created": "2020-03-15T00:30:25.444Z",
+    "modified": "2020-03-15T00:30:25.444Z",
+    "name": "Junk Data",
+    "description": "Adversaries may add junk data to protocols used for command and control to make detection more difficult. By adding random or meaningless data to the protocols used for command and control, adversaries can prevent trivial methods for decoding, deciphering, or otherwise analyzing the traffic. Examples may include appending/prepending data with junk characters or writing junk characters between significant characters. ",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "command-and-control"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--f3d95a1f-bba2-44ce-9af7-37866cd63fd0",
+    "created": "2019-11-27T13:52:45.853Z",
+    "modified": "2020-03-24T13:43:40.776Z",
+    "name": "At (Windows)",
+    "description": "Adversaries may abuse the <code>at.exe</code> utility to perform task scheduling for initial or recurring execution of malicious code. The [at](https://attack.mitre.org/software/S0110) utility exists as an executable within Windows for scheduling tasks at a specified time and date. Using [at](https://attack.mitre.org/software/S0110) requires that the Task Scheduler service be running, and the user to be logged on as a member of the local Administrators group. \n\nAn adversary may use <code>at.exe</code> in Windows environments to execute programs at system startup or on a scheduled basis for persistence. [at](https://attack.mitre.org/software/S0110) can also be abused to conduct remote Execution as part of Lateral Movement and or to run a process under the context of a specified account (such as SYSTEM).\n\nNote: The <code>at.exe</code> command line utility has been deprecated in current versions of Windows in favor of <code>schtasks</code>.",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "execution"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--36b2a1d7-e09e-49bf-b45e-477076c2ec01",
+    "created": "2020-03-02T20:08:03.691Z",
+    "modified": "2020-09-16T15:58:18.490Z",
+    "name": "Reflection Amplification",
+    "description": "Adversaries may attempt to cause a denial of service by reflecting a high-volume of network traffic to a target. This type of Network DoS takes advantage of a third-party server intermediary that hosts and will respond to a given spoofed source IP address. This third-party server is commonly termed a reflector. An adversary accomplishes a reflection attack by sending packets to reflectors with the spoofed address of the victim. Similar to Direct Network Floods, more than one system may be used to conduct the attack, or a botnet may be used. Likewise, one or more reflector may be used to focus traffic on the target.(Citation: Cloudflare ReflectionDoS May 2017)\n\nReflection attacks often take advantage of protocols with larger responses than requests in order to amplify their traffic, commonly known as a Reflection Amplification attack. Adversaries may be able to generate an increase in volume of attack traffic that is several orders of magnitude greater than the requests sent to the amplifiers. The extent of this increase will depending upon many variables, such as the protocol in question, the technique used, and the amplifying servers that actually produce the amplification in attack volume. Two prominent protocols that have enabled Reflection Amplification Floods are DNS(Citation: Cloudflare DNSamplficationDoS) and NTP(Citation: Cloudflare NTPamplifciationDoS), though the use of several others in the wild have been documented.(Citation: Arbor AnnualDoSreport Jan 2018)  In particular, the memcache protocol showed itself to be a powerful protocol, with amplification sizes up to 51,200 times the requesting packet.(Citation: Cloudflare Memcrashed Feb 2018)",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "impact"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08",
+    "created": "2017-05-31T21:31:06.988Z",
+    "modified": "2020-09-16T15:10:18.260Z",
+    "name": "Account Discovery",
+    "description": "Adversaries may attempt to get a listing of accounts on a system or within an environment. This information can help adversaries determine which accounts exist to aid in follow-on behavior.",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "discovery"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--b2d03cea-aec1-45ca-9744-9ee583c1e1cc",
+    "created": "2020-02-11T18:39:59.959Z",
+    "modified": "2020-10-19T22:43:45.475Z",
+    "name": "Credential Stuffing",
+    "description": "Adversaries may use credentials obtained from breach dumps of unrelated accounts to gain access to target accounts through credential overlap. Occasionally, large numbers of username and password pairs are dumped online when a website or service is compromised and the user account credentials accessed. The information may be useful to an adversary attempting to compromise accounts by taking advantage of the tendency for users to use the same passwords across personal and business accounts.\n\nCredential stuffing is a risky option because it could cause numerous authentication failures and account lockouts, depending on the organization's login failure policies.\n\nTypically, management services over commonly used ports are used when stuffing credentials. Commonly targeted services include the following:\n\n* SSH (22/TCP)\n* Telnet (23/TCP)\n* FTP (21/TCP)\n* NetBIOS / SMB / Samba (139/TCP & 445/TCP)\n* LDAP (389/TCP)\n* Kerberos (88/TCP)\n* RDP / Terminal Services (3389/TCP)\n* HTTP/HTTP Management Services (80/TCP & 443/TCP)\n* MSSQL (1433/TCP)\n* Oracle (1521/TCP)\n* MySQL (3306/TCP)\n* VNC (5900/TCP)\n\nIn addition to management services, adversaries may \"target single sign-on (SSO) and cloud-based applications utilizing federated authentication protocols,\" as well as externally facing email applications, such as Office 365.(Citation: US-CERT TA18-068A 2018)",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "credential-access"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--6151cbea-819b-455a-9fa6-99a1cc58797d",
+    "created": "2020-03-13T20:15:31.974Z",
+    "modified": "2020-09-16T19:41:43.491Z",
+    "name": "Default Accounts",
+    "description": "Adversaries may obtain and abuse credentials of a default account as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Default accounts are those that are built-into an OS, such as the Guest or Administrator accounts on Windows systems or default factory/provider set accounts on other types of systems, software, or devices.(Citation: Microsoft Local Accounts Feb 2019)\n\nDefault accounts are not limited to client machines, rather also include accounts that are preset for equipment such as network devices and computer applications whether they are internal, open source, or commercial. Appliances that come preset with a username and password combination pose a serious threat to organizations that do not change it post installation, as they are easy targets for an adversary. Similarly, adversaries may also utilize publicly disclosed or stolen [Private Keys](https://attack.mitre.org/techniques/T1552/004) or credential materials to legitimately connect to remote environments via [Remote Services](https://attack.mitre.org/techniques/T1021).(Citation: Metasploit SSH Module)",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "initial-access"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--21875073-b0ee-49e3-9077-1e2a885359af",
+    "created": "2020-02-21T21:08:26.480Z",
+    "modified": "2020-03-26T13:42:34.402Z",
+    "name": "Domain Account",
+    "description": "Adversaries may attempt to get a listing of domain accounts. This information can help adversaries determine which domain accounts exist to aid in follow-on behavior.\n\nCommands such as <code>net user /domain</code> and <code>net group /domain</code> of the [Net](https://attack.mitre.org/software/S0039) utility, <code>dscacheutil -q group</code>on macOS, and <code>ldapsearch</code> on Linux can list domain users and groups.",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "discovery"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--25659dd6-ea12-45c4-97e6-381e3e4b593e",
+    "created": "2020-02-21T21:07:55.393Z",
+    "modified": "2020-03-20T19:39:59.544Z",
+    "name": "Local Account",
+    "description": "Adversaries may attempt to get a listing of local system accounts. This information can help adversaries determine which local accounts exist on a system to aid in follow-on behavior.\n\nCommands such as <code>net user</code> and <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility and <code>id</code> and <code>groups</code>on macOS and Linux can list local users and groups. On Linux, local users can also be enumerated through the use of the <code>/etc/passwd</code> file.",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "discovery"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--4bc31b94-045b-4752-8920-aebaebdb6470",
+    "created": "2020-02-21T21:08:33.237Z",
+    "modified": "2020-03-26T15:27:58.933Z",
+    "name": "Email Account",
+    "description": "Adversaries may attempt to get a listing of email addresses and accounts. Adversaries may try to dump Exchange address lists such as global address lists (GALs).(Citation: Microsoft Exchange Address Lists)\n\nIn on-premises Exchange and Exchange Online, the<code>Get-GlobalAddressList</code> PowerShell cmdlet can be used to obtain email addresses and accounts from a domain using an authenticated session.(Citation: Microsoft getglobaladdresslist)(Citation: Black Hills Attacking Exchange MailSniper, 2016)",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "discovery"
+        }
+    ]
+} ,
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--8f104855-e5b7-4077-b1f5-bc3103b41abe",
+    "created": "2020-02-21T21:08:36.570Z",
+    "modified": "2020-08-13T16:53:55.390Z",
+    "name": "Cloud Account",
+    "description": "Adversaries may attempt to get a listing of cloud accounts. Cloud accounts are those created and configured by an organization for use by users, remote support, services, or for administration of resources within a cloud service provider or SaaS application.\n\nWith authenticated access there are several tools that can be used to find accounts. The <code>Get-MsolRoleMember</code> PowerShell cmdlet can be used to obtain account names given a role or permissions group in Office 365.(Citation: Microsoft msolrolemember)(Citation: GitHub Raindance) The Azure CLI (AZ CLI) also provides an interface to obtain user accounts with authenticated access to a domain. The command <code>az ad user list</code> will list all users within a domain.(Citation: Microsoft AZ CLI)(Citation: Black Hills Red Teaming MS AD Azure, 2018) \n\nThe AWS command <code>aws iam list-users</code> may be used to obtain a list of users in the current account while <code>aws iam list-roles</code> can obtain IAM roles that have a specified path prefix.(Citation: AWS List Roles)(Citation: AWS List Users) In GCP, <code>gcloud iam service-accounts list</code> and <code>gcloud projects get-iam-policy</code> may be used to obtain a listing of service accounts and users in a project.(Citation: Google Cloud - IAM Servie Accounts List API)",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "mandiant-attack-lifecycle-model",
+            "phase_name": "discovery"
+        }
+    ]
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--0f1ad2ef-41d4-4b7a-9304-ddae68ea3005",
+    "created": "2018-04-18T17:59:24.739Z",
+    "modified": "2020-03-30T18:33:31.623Z",
+    "name": "adbupd",
+    "description": "[adbupd](https://attack.mitre.org/software/S0202) is a backdoor used by [PLATINUM](https://attack.mitre.org/groups/G0068) that is similar to [Dipsind](https://attack.mitre.org/software/S0200). (Citation: Microsoft PLATINUM April 2016)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--47124daf-44be-4530-9c63-038bc64318dd",
+    "created": "2020-09-23T18:04:24.998Z",
+    "modified": "2020-10-09T16:07:59.731Z",
+    "name": "RegDuke",
+    "description": "[RegDuke](https://attack.mitre.org/software/S0511) is a first stage implant written in .NET and used by [APT29](https://attack.mitre.org/groups/G0016) since at least 2017. [RegDuke](https://attack.mitre.org/software/S0511) has been used to control a compromised machine when control of other implants on the machine was lost.(Citation: ESET Dukes October 2019)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--5e595477-2e78-4ce7-ae42-e0b059b17808",
+    "created": "2017-12-14T16:46:06.044Z",
+    "modified": "2020-03-30T17:16:53.396Z",
+    "name": "POSHSPY",
+    "description": "[POSHSPY](https://attack.mitre.org/software/S0150) is a backdoor that has been used by [APT29](https://attack.mitre.org/groups/G0016) since at least 2015. It appears to be used as a secondary backdoor used if the actors lost access to their primary backdoors. (Citation: FireEye POSHSPY April 2017)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--67e6d66b-1b82-4699-b47a-e2efb6268d14",
+    "created": "2017-05-31T21:32:37.767Z",
+    "modified": "2020-03-30T18:14:02.011Z",
+    "name": "SeaDuke",
+    "description": "[SeaDuke](https://attack.mitre.org/software/S0053) is malware that was used by [APT29](https://attack.mitre.org/groups/G0016) from 2014 to 2015. It was used primarily as a secondary backdoor for victims that were already compromised with [CozyCar](https://attack.mitre.org/software/S0046). (Citation: F-Secure The Dukes)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--e85cae1a-bce3-4ac4-b36b-b00acac0567b",
+    "created": "2019-04-16T17:43:42.724Z",
+    "modified": "2020-03-25T16:21:36.260Z",
+    "name": "POWERTON",
+    "description": "[POWERTON](https://attack.mitre.org/software/S0371) is a custom PowerShell backdoor first observed in 2018. It has typically been deployed as a late-stage backdoor by [APT33](https://attack.mitre.org/groups/G0064). At least two variants of the backdoor have been identified, with the later version containing improved functionality.(Citation: FireEye APT33 Guardrail)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--75ecdbf1-c2bb-4afc-a3f9-c8da4de8c661",
+    "created": "2019-03-25T17:30:17.004Z",
+    "modified": "2020-05-13T22:59:51.283Z",
+    "name": "WannaCry",
+    "description": "[WannaCry](https://attack.mitre.org/software/S0366) is ransomware that was first seen in a global attack during May 2017, which affected more than 150 countries. It contains worm-like features to spread itself across a computer network using the SMBv1 exploit EternalBlue.(Citation: LogRhythm WannaCry)(Citation: US-CERT WannaCry 2017)(Citation: Washington Post WannaCry 2017)(Citation: FireEye WannaCry 2017)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--de6cb631-52f6-4169-a73b-7965390b0c30",
+    "created": "2018-04-18T17:59:24.739Z",
+    "modified": "2020-08-11T19:44:31.363Z",
+    "name": "JPIN",
+    "description": "[JPIN](https://attack.mitre.org/software/S0201) is a custom-built backdoor family used by [PLATINUM](https://attack.mitre.org/groups/G0068). Evidence suggests developers of [JPIN](https://attack.mitre.org/software/S0201) and [Dipsind](https://attack.mitre.org/software/S0200) code bases were related in some way. (Citation: Microsoft PLATINUM April 2016)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--08d20cd2-f084-45ee-8558-fa6ef5a18519",
+    "created": "2017-05-31T21:33:16.790Z",
+    "modified": "2020-03-30T15:32:15.795Z",
+    "name": "Downdelph",
+    "description": "[Downdelph](https://attack.mitre.org/software/S0134) is a first-stage downloader written in Delphi that has been used by [APT28](https://attack.mitre.org/groups/G0007) in rare instances between 2013 and 2015. (Citation: ESET Sednit Part 3)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--3a4197ae-ec63-4162-907b-9a073d1157e4",
+    "created": "2020-09-24T19:39:44.392Z",
+    "modified": "2020-10-09T19:41:25.983Z",
+    "name": "WellMess",
+    "description": "[WellMess](https://attack.mitre.org/software/S0514) is lightweight malware family with variants written in .NET and Golang that has been in use since at least 2018 by [APT29](https://attack.mitre.org/groups/G0016).(Citation: CISA WellMess July 2020)(Citation: PWC WellMess July 2020)(Citation: NCSC APT29 July 2020)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--b2c5d3ca-b43a-4888-ad8d-e2d43497bf85",
+    "created": "2017-05-31T21:32:16.715Z",
+    "modified": "2020-03-30T17:14:31.945Z",
+    "name": "P2P ZeuS",
+    "description": "[P2P ZeuS](https://attack.mitre.org/software/S0016) is a closed-source fork of the leaked version of the ZeuS botnet. It presents improvements over the leaked version, including a peer-to-peer architecture. (Citation: Dell P2P ZeuS)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--b57f419e-8b12-49d3-886b-145383725dcd",
+    "created": "2020-05-06T12:55:10.969Z",
+    "modified": "2020-07-04T01:44:16.182Z",
+    "name": "PLEAD",
+    "description": "[PLEAD](https://attack.mitre.org/software/S0435) is a remote access tool (RAT) and downloader used by [BlackTech](https://attack.mitre.org/groups/G0098) in targeted attacks in East Asia including Taiwan, Japan, and Hong Kong.(Citation: TrendMicro BlackTech June 2017)(Citation: JPCert PLEAD Downloader June 2018) [PLEAD](https://attack.mitre.org/software/S0435) has also been referred to as [TSCookie](https://attack.mitre.org/software/S0436), though more recent reporting indicates likely separation between the two.(Citation: JPCert TSCookie March 2018)(Citation: JPCert PLEAD Downloader June 2018) ",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--049ff071-0b3c-4712-95d2-d21c6aa54501",
+    "created": "2018-04-18T17:59:24.739Z",
+    "modified": "2020-03-30T17:00:19.828Z",
+    "name": "MURKYTOP",
+    "description": "[MURKYTOP](https://attack.mitre.org/software/S0233) is a reconnaissance tool used by [Leviathan](https://attack.mitre.org/groups/G0065). (Citation: FireEye Periscope March 2018)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--00806466-754d-44ea-ad6f-0caf59cb8556",
+    "created": "2018-10-17T00:14:20.652Z",
+    "modified": "2020-10-17T15:06:16.817Z",
+    "name": "TrickBot",
+    "description": "[TrickBot](https://attack.mitre.org/software/S0266) is a Trojan spyware program that has mainly been used for targeting banking sites in United States, Canada, UK, Germany, Australia, Austria, Ireland, London, Switzerland, and Scotland. TrickBot first emerged in the wild in September 2016 and appears to be a successor to [Dyre](https://attack.mitre.org/software/S0024). [TrickBot](https://attack.mitre.org/software/S0266) is developed in the C++ programming language. (Citation: S2 Grupo TrickBot June 2017) (Citation: Fidelis TrickBot Oct 2016) (Citation: IBM TrickBot Nov 2016)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--09b2cd76-c674-47cc-9f57-d2f2ad150a46",
+    "created": "2018-01-16T16:13:52.465Z",
+    "modified": "2020-07-06T16:11:56.562Z",
+    "name": "POWRUNER",
+    "description": "[POWRUNER](https://attack.mitre.org/software/S0184) is a PowerShell script that sends and receives commands to and from the C2 server. (Citation: FireEye APT34 Dec 2017)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--199463de-d9be-46d6-bb41-07234c1dd5a6",
+    "created": "2017-05-31T21:32:36.177Z",
+    "modified": "2020-03-30T16:43:20.186Z",
+    "name": "GeminiDuke",
+    "description": "[GeminiDuke](https://attack.mitre.org/software/S0049) is malware that was used by [APT29](https://attack.mitre.org/groups/G0016) from 2009 to 2012. (Citation: F-Secure The Dukes)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--1f6e3702-7ca1-4582-b2e7-4591297d05a8",
+    "created": "2018-10-17T00:14:20.652Z",
+    "modified": "2020-03-30T20:41:17.223Z",
+    "name": "Bankshot",
+    "description": "[Bankshot](https://attack.mitre.org/software/S0239) is a remote access tool (RAT) that was first reported by the Department of Homeland Security in December of 2017. In 2018, [Lazarus Group](https://attack.mitre.org/groups/G0032) used the [Bankshot](https://attack.mitre.org/software/S0239) implant in attacks against the Turkish financial sector. (Citation: McAfee Bankshot)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--47afe41c-4c08-485e-b062-c3bd209a1cce",
+    "created": "2018-10-17T00:14:20.652Z",
+    "modified": "2020-10-21T17:45:34.380Z",
+    "name": "InvisiMole",
+    "description": "[InvisiMole](https://attack.mitre.org/software/S0260) is a modular spyware program that has been used by the InvisiMole Group since at least 2013. [InvisiMole](https://attack.mitre.org/software/S0260) has two backdoor modules called RC2FM and RC2CL that are used to perform post-exploitation activities. It has been discovered on compromised victims in the Ukraine and Russia. [Gamaredon Group](https://attack.mitre.org/groups/G0047) infrastructure has been used to download and execute [InvisiMole](https://attack.mitre.org/software/S0260) against a small number of victims.(Citation: ESET InvisiMole June 2018)(Citation: ESET InvisiMole June 2020)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--536be338-e2ef-4a6b-afb6-8d5568b91eb2",
+    "created": "2018-10-17T00:14:20.652Z",
+    "modified": "2020-03-20T21:15:48.610Z",
+    "name": "Kazuar",
+    "description": "[Kazuar](https://attack.mitre.org/software/S0265) is a fully featured, multi-platform backdoor Trojan written using the Microsoft .NET framework. (Citation: Unit 42 Kazuar May 2017)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--58adaaa8-f1e8-4606-9a08-422e568461eb",
+    "created": "2017-05-31T21:32:42.754Z",
+    "modified": "2020-03-30T18:09:41.437Z",
+    "name": "SHOTPUT",
+    "description": "[SHOTPUT](https://attack.mitre.org/software/S0063) is a custom backdoor used by [APT3](https://attack.mitre.org/groups/G0022). (Citation: FireEye Clandestine Wolf)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--5c6ed2dc-37f4-40ea-b2e1-4c76140a388c",
+    "created": "2018-04-18T17:59:24.739Z",
+    "modified": "2020-06-25T22:31:02.691Z",
+    "name": "PUNCHBUGGY",
+    "description": "[PUNCHBUGGY](https://attack.mitre.org/software/S0196) is a backdoor malware used by [FIN8](https://attack.mitre.org/groups/G0061) that has been observed targeting POS networks in the hospitality industry. (Citation: Morphisec ShellTea June 2019)(Citation: FireEye Fin8 May 2016) (Citation: FireEye Know Your Enemy FIN8 Aug 2016)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--66b1dcde-17a0-4c7b-95fa-b08d430c2131",
+    "created": "2017-05-31T21:32:55.925Z",
+    "modified": "2020-03-20T18:28:45.114Z",
+    "name": "S-Type",
+    "description": "[S-Type](https://attack.mitre.org/software/S0085) is a backdoor that was used by [Dust Storm](https://attack.mitre.org/groups/G0031) from 2013 to 2014. (Citation: Cylance Dust Storm)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--68dca94f-c11d-421e-9287-7c501108e18c",
+    "created": "2017-05-31T21:32:31.188Z",
+    "modified": "2020-03-30T02:07:19.052Z",
+    "name": "Duqu",
+    "description": "[Duqu](https://attack.mitre.org/software/S0038) is a malware platform that uses a modular approach to extend functionality after deployment within a target network. (Citation: Symantec W32.Duqu)",
+    "is_family": false
+} ,
+{
+    "type": "malware",
+    "spec_version": "2.1",
+    "id": "malware--69d6f4a9-fcf0-4f51-bca7-597c51ad0bb8",
+    "created": "2017-05-31T21:33:12.858Z",
+    "modified": "2020-03-28T21:41:25.889Z",
+    "name": "Remsec",
+    "description": "[Remsec](https://attack.mitre.org/software/S0125) is a modular backdoor that has been used by [Strider](https://attack.mitre.org/groups/G0041) and appears to have been designed primarily for espionage purposes. Many of its modules are written in Lua. (Citation: Symantec Strider Blog)",
+    "is_family": false
+} ,
+{
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--4b57c098-f043-4da2-83ef-7588a6d426bc",
+    "created": "2019-04-23T12:31:58.125Z",
+    "modified": "2020-03-30T02:37:23.626Z",
+    "name": "PoshC2",
+    "description": "[PoshC2](https://attack.mitre.org/software/S0378) is an open source remote administration and post-exploitation framework that is publicly available on GitHub. The server-side components of the tool are primarily written in Python, while the implants are written in [PowerShell](https://attack.mitre.org/techniques/T1086). Although [PoshC2](https://attack.mitre.org/software/S0378) is primarily focused on Windows implantation, it does contain a basic Python dropper for Linux/macOS.(Citation: GitHub PoshC2)"
+} ,
+{
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--0c8465c0-d0b4-4670-992e-4eee8d7ff952",
+    "created": "2017-05-31T21:33:06.824Z",
+    "modified": "2020-03-30T18:34:22.227Z",
+    "name": "at",
+    "description": "[at](https://attack.mitre.org/software/S0110) is used to schedule tasks on a system to run at a specified date or time. (Citation: TechNet At)"
+} ,
+{
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--c4810609-7da6-48ec-8057-1b70a7814db0",
+    "created": "2020-07-17T14:23:05.958Z",
+    "modified": "2020-07-29T20:19:40.544Z",
+    "name": "CrackMapExec",
+    "description": "[CrackMapExec](https://attack.mitre.org/software/S0488), or CME, is a post-exploitation tool developed in Python and designed for penetration testing against networks. [CrackMapExec](https://attack.mitre.org/software/S0488) collects Active Directory information to conduct lateral movement through targeted networks.(Citation: CME Github September 2018)"
+} ,
+{
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--03342581-f790-4f03-ba41-e82e67392e23",
+    "created": "2017-05-31T21:32:31.601Z",
+    "modified": "2020-03-19T13:14:50.240Z",
+    "name": "Net",
+    "description": "The [Net](https://attack.mitre.org/software/S0039) utility is a component of the Windows operating system. It is used in command-line operations for control of users, groups, services, and network connections. (Citation: Microsoft Net Utility)\n\n[Net](https://attack.mitre.org/software/S0039) has a great deal of functionality, (Citation: Savill 1999) much of which is useful for an adversary, such as gathering system and network information for Discovery, moving laterally through [Windows Admin Shares](https://attack.mitre.org/techniques/T1077) using <code>net use</code> commands, and interacting with services. The net1.exe utility is executed for certain functionality when net.exe is run and can be used directly in commands such as <code>net1 user</code>."
+} ,
+{
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--115f88dd-0618-4389-83cb-98d33ae81848",
+    "created": "2020-05-12T21:29:48.294Z",
+    "modified": "2020-05-27T22:39:28.701Z",
+    "name": "ShimRatReporter",
+    "description": "[ShimRatReporter](https://attack.mitre.org/software/S0445) is a tool used by suspected Chinese adversary [Mofang](https://attack.mitre.org/groups/G0103) to automatically conduct initial discovery. The details from this discovery are used to customize follow-on payloads (such as [ShimRat](https://attack.mitre.org/software/S0444)) as well as set up faux infrastructure which mimics the adversary's targets. [ShimRatReporter](https://attack.mitre.org/software/S0445) has been used in campaigns targeting multiple countries and sectors including government, military, critical infrastructure, automobile, and weapons development.(Citation: FOX-IT May 2016 Mofang)"
+} ,
+{
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--13cd9151-83b7-410d-9f98-25d0f0d1d80d",
+    "created": "2018-04-18T17:59:24.739Z",
+    "modified": "2020-03-28T21:37:30.172Z",
+    "name": "PowerSploit",
+    "description": "[PowerSploit](https://attack.mitre.org/software/S0194) is an open source, offensive security framework comprised of [PowerShell](https://attack.mitre.org/techniques/T1086) modules and scripts that perform a wide range of tasks related to penetration testing such as code execution, persistence, bypassing anti-virus, recon, and exfiltration. (Citation: GitHub PowerSploit May 2012) (Citation: PowerShellMagazine PowerSploit July 2014) (Citation: PowerSploit Documentation)"
+} ,
+{
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--3433a9e8-1c47-4320-b9bf-ed449061d1c3",
+    "created": "2019-03-11T14:13:40.648Z",
+    "modified": "2020-03-30T02:08:26.536Z",
+    "name": "Empire",
+    "description": "[Empire](https://attack.mitre.org/software/S0363) is an open source, cross-platform remote administration and post-exploitation framework that is publicly available on GitHub. While the tool itself is primarily written in Python, the post-exploitation agents are written in pure [PowerShell](https://attack.mitre.org/techniques/T1086) for Windows and Python for Linux/macOS. [Empire](https://attack.mitre.org/software/S0363) was one of five tools singled out by a joint report on public hacking tools being widely used by adversaries.(Citation: NCSC Joint Report Public Tools)(Citation: Github PowerShell Empire)(Citation: GitHub ATTACK Empire)"
+} ,
+{
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--38952eac-cb1b-4a71-bad2-ee8223a1c8fe",
+    "created": "2017-05-31T21:33:04.937Z",
+    "modified": "2020-03-18T20:01:55.739Z",
+    "name": "dsquery",
+    "description": "[dsquery](https://attack.mitre.org/software/S0105) is a command-line utility that can be used to query Active Directory for information from a system within a domain. (Citation: TechNet Dsquery) It is typically installed only on Windows Server versions but can be installed on non-server variants through the Microsoft-provided Remote Server Administration Tools bundle."
+} ,
+{
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--999c4e6e-b8dc-4b4f-8d6e-1b829f29997e",
+    "created": "2019-10-05T02:34:01.189Z",
+    "modified": "2020-03-30T17:01:41.302Z",
+    "name": "MailSniper",
+    "description": "MailSniper is a penetration testing tool for searching through email in a Microsoft Exchange environment for specific terms (passwords, insider intel, network architecture information, etc.). It can be used by a non-administrative user to search their own email, or by an Exchange administrator to search the mailboxes of every user in a domain.(Citation: GitHub MailSniper)"
+} ,
+{
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--cb69b20d-56d0-41ab-8440-4a4b251614d4",
+    "created": "2018-04-18T17:59:24.739Z",
+    "modified": "2020-05-13T22:57:00.921Z",
+    "name": "Pupy",
+    "description": "[Pupy](https://attack.mitre.org/software/S0192) is an open source, cross-platform (Windows, Linux, OSX, Android) remote administration and post-exploitation tool. (Citation: GitHub Pupy) It is written in Python and can be generated as a payload in several different ways (Windows exe, Python file, PowerShell oneliner/file, Linux elf, APK, Rubber Ducky, etc.). (Citation: GitHub Pupy) [Pupy](https://attack.mitre.org/software/S0192) is publicly available on GitHub. (Citation: GitHub Pupy)"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--3f02e02b-7629-4a4a-8a56-9e806c2ba0e6",
+    "created": "2021-06-15T15:30:31.125966Z",
+    "modified": "2021-06-15T15:30:31.125966Z",
+    "relationship_type": "subtechnique-of",
+    "description": "",
+    "source_ref": "attack-pattern--21875073-b0ee-49e3-9077-1e2a885359af",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--c4334036-c713-430c-8049-ff96a170ce7e",
+    "created": "2021-06-15T15:30:31.128051Z",
+    "modified": "2021-06-15T15:30:31.128051Z",
+    "relationship_type": "subtechnique-of",
+    "description": "",
+    "source_ref": "attack-pattern--25659dd6-ea12-45c4-97e6-381e3e4b593e",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--ce329abf-d8f0-4c6c-8437-7d30104f29cf",
+    "created": "2021-06-15T15:30:31.12904Z",
+    "modified": "2021-06-15T15:30:31.12904Z",
+    "relationship_type": "subtechnique-of",
+    "description": "",
+    "source_ref": "attack-pattern--4bc31b94-045b-4752-8920-aebaebdb6470",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--5f5872b6-7ba5-419e-b998-a4f653b04797",
+    "created": "2021-06-15T15:30:31.12904Z",
+    "modified": "2021-06-15T15:30:31.12904Z",
+    "relationship_type": "subtechnique-of",
+    "description": "",
+    "source_ref": "attack-pattern--8f104855-e5b7-4077-b1f5-bc3103b41abe",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--663b4ee5-66ec-4089-9fd4-1a283b8d3ad0",
+    "created": "2021-06-15T15:30:31.130002Z",
+    "modified": "2021-06-15T15:30:31.130002Z",
+    "relationship_type": "revoked-by",
+    "description": "",
+    "source_ref": "attack-pattern--e906ae4d-1d3a-4675-be23-22f7311c0da4",
+    "target_ref": "attack-pattern--910906dd-8c0a-475a-9cc1-5e029e2fad58"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--a51e9dce-4611-478f-ac31-f0e2be336025",
+    "created": "2021-06-15T15:30:31.130002Z",
+    "modified": "2021-06-15T15:30:31.130002Z",
+    "relationship_type": "uses",
+    "description": "[TrickBot](https://attack.mitre.org/software/S0266) collects the users of the system.",
+    "source_ref": "malware--00806466-754d-44ea-ad6f-0caf59cb8556",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--d0c24075-26c5-41f8-8350-cb3a95ebc927",
+    "created": "2021-06-15T15:30:31.130965Z",
+    "modified": "2021-06-15T15:30:31.130965Z",
+    "relationship_type": "uses",
+    "description": "[MURKYTOP](https://attack.mitre.org/software/S0233) has the capability to retrieve information about users on remote hosts.",
+    "source_ref": "malware--049ff071-0b3c-4712-95d2-d21c6aa54501",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--78fa9d22-9956-4e2f-a17e-3107b6fc231d",
+    "created": "2021-06-15T15:30:31.130965Z",
+    "modified": "2021-06-15T15:30:31.130965Z",
+    "relationship_type": "uses",
+    "description": "[Downdelph](https://attack.mitre.org/software/S0134) inserts pseudo-random characters between each original character during encoding of C2 network requests, making it difficult to write signatures on them.(Citation: ESET Sednit Part 3)",
+    "source_ref": "malware--08d20cd2-f084-45ee-8558-fa6ef5a18519",
+    "target_ref": "attack-pattern--f7c0689c-4dbd-489b-81be-7cb7c7079ade"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--2431f461-f1bb-4842-8606-9a4f901f7aa5",
+    "created": "2021-06-15T15:30:31.131965Z",
+    "modified": "2021-06-15T15:30:31.131965Z",
+    "relationship_type": "uses",
+    "description": "[POWRUNER](https://attack.mitre.org/software/S0184) may collect user account information by running <code>net user /domain</code> or a series of other commands on a victim.",
+    "source_ref": "malware--09b2cd76-c674-47cc-9f57-d2f2ad150a46",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--efbe68dc-1749-42f6-a924-864eba56682a",
+    "created": "2021-06-15T15:30:31.131965Z",
+    "modified": "2021-06-15T15:30:31.131965Z",
+    "relationship_type": "uses",
+    "description": "[adbupd](https://attack.mitre.org/software/S0202) can use a WMI script to achieve persistence.(Citation: Microsoft PLATINUM April 2016)",
+    "source_ref": "malware--0f1ad2ef-41d4-4b7a-9304-ddae68ea3005",
+    "target_ref": "attack-pattern--910906dd-8c0a-475a-9cc1-5e029e2fad58"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--969a11bd-8374-4a13-a533-bb75a932fcdc",
+    "created": "2021-06-15T15:30:31.132965Z",
+    "modified": "2021-06-15T15:30:31.132965Z",
+    "relationship_type": "uses",
+    "description": "[GeminiDuke](https://attack.mitre.org/software/S0049) collects information on local user accounts from the victim.",
+    "source_ref": "malware--199463de-d9be-46d6-bb41-07234c1dd5a6",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--6769e207-ede8-4e9f-971c-3b5b24282b5f",
+    "created": "2021-06-15T15:30:31.132965Z",
+    "modified": "2021-06-15T15:30:31.132965Z",
+    "relationship_type": "uses",
+    "description": "[Bankshot](https://attack.mitre.org/software/S0239) gathers domain and account names/information through process monitoring.",
+    "source_ref": "malware--1f6e3702-7ca1-4582-b2e7-4591297d05a8",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--ff3953e3-ab35-4eea-8714-32f52156e042",
+    "created": "2021-06-15T15:30:31.133965Z",
+    "modified": "2021-06-15T15:30:31.133965Z",
+    "relationship_type": "uses",
+    "description": "[WellMess](https://attack.mitre.org/software/S0514) can use junk data in the Base64 string for additional obfuscation.(Citation: CISA WellMess July 2020)",
+    "source_ref": "malware--3a4197ae-ec63-4162-907b-9a073d1157e4",
+    "target_ref": "attack-pattern--f7c0689c-4dbd-489b-81be-7cb7c7079ade"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--835d87fa-281d-49b1-ad9e-c1bc5415a9ed",
+    "created": "2021-06-15T15:30:31.133965Z",
+    "modified": "2021-06-15T15:30:31.133965Z",
+    "relationship_type": "uses",
+    "description": "[RegDuke](https://attack.mitre.org/software/S0511) can persist using a WMI consumer that is launched every time a process named WINWORD.EXE is started.(Citation: ESET Dukes October 2019)",
+    "source_ref": "malware--47124daf-44be-4530-9c63-038bc64318dd",
+    "target_ref": "attack-pattern--910906dd-8c0a-475a-9cc1-5e029e2fad58"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--a46244e0-0f80-47d4-bb6c-5449a92f06c5",
+    "created": "2021-06-15T15:30:31.133965Z",
+    "modified": "2021-06-15T15:30:31.133965Z",
+    "relationship_type": "uses",
+    "description": "[InvisiMole](https://attack.mitre.org/software/S0260) has a command to list account information on the victim\u2019s machine.",
+    "source_ref": "malware--47afe41c-4c08-485e-b062-c3bd209a1cce",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--e31baf4d-b450-4f32-9904-2462b31228f0",
+    "created": "2021-06-15T15:30:31.134965Z",
+    "modified": "2021-06-15T15:30:31.134965Z",
+    "relationship_type": "uses",
+    "description": "[Kazuar](https://attack.mitre.org/software/S0265) gathers information on local groups and members on the victim\u2019s machine.",
+    "source_ref": "malware--536be338-e2ef-4a6b-afb6-8d5568b91eb2",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--ba64ef1f-0711-46cb-b2b2-87d3e7709fc2",
+    "created": "2021-06-15T15:30:31.134965Z",
+    "modified": "2021-06-15T15:30:31.134965Z",
+    "relationship_type": "uses",
+    "description": "[SHOTPUT](https://attack.mitre.org/software/S0063) has a command to retrieve information about connected users.",
+    "source_ref": "malware--58adaaa8-f1e8-4606-9a08-422e568461eb",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--cdfbb9fe-45cc-4388-a8e1-7b7fdd8621cb",
+    "created": "2021-06-15T15:30:31.135965Z",
+    "modified": "2021-06-15T15:30:31.135965Z",
+    "relationship_type": "uses",
+    "description": "[PUNCHBUGGY](https://attack.mitre.org/software/S0196) can gather user names.",
+    "source_ref": "malware--5c6ed2dc-37f4-40ea-b2e1-4c76140a388c",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--6dad2df1-5141-4384-83a0-eaa9422bdcc6",
+    "created": "2021-06-15T15:30:31.135965Z",
+    "modified": "2021-06-15T15:30:31.135965Z",
+    "relationship_type": "uses",
+    "description": "[POSHSPY](https://attack.mitre.org/software/S0150) uses a WMI event subscription to establish persistence.(Citation: FireEye POSHSPY April 2017)",
+    "source_ref": "malware--5e595477-2e78-4ce7-ae42-e0b059b17808",
+    "target_ref": "attack-pattern--910906dd-8c0a-475a-9cc1-5e029e2fad58"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--5ce779ec-be71-4963-bc8d-6233798aadf1",
+    "created": "2021-06-15T15:30:31.136965Z",
+    "modified": "2021-06-15T15:30:31.136965Z",
+    "relationship_type": "uses",
+    "description": "[S-Type](https://attack.mitre.org/software/S0085) runs the command <code>net user</code> on a victim. [S-Type](https://attack.mitre.org/software/S0085) also runs tests to determine the privilege level of the compromised user.",
+    "source_ref": "malware--66b1dcde-17a0-4c7b-95fa-b08d430c2131",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--49ac9550-6270-4f01-a2bc-ad8045cb2c6e",
+    "created": "2021-06-15T15:30:31.136965Z",
+    "modified": "2021-06-15T15:30:31.136965Z",
+    "relationship_type": "uses",
+    "description": "[SeaDuke](https://attack.mitre.org/software/S0053) uses an event filter in WMI code to execute a previously dropped executable shortly after system startup.(Citation: FireEye WMI 2015)",
+    "source_ref": "malware--67e6d66b-1b82-4699-b47a-e2efb6268d14",
+    "target_ref": "attack-pattern--910906dd-8c0a-475a-9cc1-5e029e2fad58"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--125a859e-8e5f-482f-a32a-94675e78a95b",
+    "created": "2021-06-15T15:30:31.137965Z",
+    "modified": "2021-06-15T15:30:31.137965Z",
+    "relationship_type": "uses",
+    "description": "The discovery modules used with [Duqu](https://attack.mitre.org/software/S0038) can collect information on accounts and permissions.",
+    "source_ref": "malware--68dca94f-c11d-421e-9287-7c501108e18c",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--76adfe77-7c66-4c69-84e1-9ce81164c631",
+    "created": "2021-06-15T15:30:31.137965Z",
+    "modified": "2021-06-15T15:30:31.137965Z",
+    "relationship_type": "uses",
+    "description": "[Remsec](https://attack.mitre.org/software/S0125) can obtain a list of users.",
+    "source_ref": "malware--69d6f4a9-fcf0-4f51-bca7-597c51ad0bb8",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--edc9c7ae-fcef-411d-9f46-f871a7c5df32",
+    "created": "2021-06-15T15:30:31.138965Z",
+    "modified": "2021-06-15T15:30:31.138965Z",
+    "relationship_type": "uses",
+    "description": "[Sykipot](https://attack.mitre.org/software/S0018) may use <code>net group \"domain admins\" /domain</code> to display accounts in the \"domain admins\" permissions group and <code>net localgroup \"administrators\"</code> to list local system administrator group membership.",
+    "source_ref": "malware--6a0ef5d4-fc7c-4dda-85d7-592e4dbdc5d9",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--4a72e737-8f8a-4eef-a900-a76de326c9bf",
+    "created": "2021-06-15T15:30:31.138965Z",
+    "modified": "2021-06-15T15:30:31.138965Z",
+    "relationship_type": "uses",
+    "description": "[Epic](https://attack.mitre.org/software/S0091) gathers a list of all user accounts, privilege classes, and time of last logon.",
+    "source_ref": "malware--6b62e336-176f-417b-856a-8552dd8c44e1",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--cc8d3e0c-19ec-4cb9-be10-5ed52569f327",
+    "created": "2021-06-15T15:30:31.139965Z",
+    "modified": "2021-06-15T15:30:31.139965Z",
+    "relationship_type": "uses",
+    "description": "[Elise](https://attack.mitre.org/software/S0081) executes <code>net user</code> after initial communication is made to the remote server.",
+    "source_ref": "malware--7551188b-8f91-4d34-8350-0d0c57b2b913",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--08a7f85d-f88f-4bc1-bca2-8371faa0eeb5",
+    "created": "2021-06-15T15:30:31.139965Z",
+    "modified": "2021-06-15T15:30:31.139965Z",
+    "relationship_type": "uses",
+    "description": "[WannaCry](https://attack.mitre.org/software/S0366) uses <code>attrib +h</code> and <code>icacls . /grant Everyone:F /T /C /Q</code> to make some of its files hidden and grant all users full access controls.(Citation: LogRhythm WannaCry)",
+    "source_ref": "malware--75ecdbf1-c2bb-4afc-a3f9-c8da4de8c661",
+    "target_ref": "attack-pattern--34e793de-0274-4982-9c1a-246ed1c19dee"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--c5cb7833-1df8-48c8-af11-b293ee7daf00",
+    "created": "2021-06-15T15:30:31.140965Z",
+    "modified": "2021-06-15T15:30:31.140965Z",
+    "relationship_type": "uses",
+    "description": "[RATANKBA](https://attack.mitre.org/software/S0241) uses the <code>net user</code> command.",
+    "source_ref": "malware--9b325b06-35a1-457d-be46-a4ecc0b7ff0c",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--1635cce7-deb9-4501-b1e2-6e9fd2793750",
+    "created": "2021-06-15T15:30:31.140965Z",
+    "modified": "2021-06-15T15:30:31.140965Z",
+    "relationship_type": "uses",
+    "description": "[P2P ZeuS](https://attack.mitre.org/software/S0016) added junk data to outgoing UDP packets to peer implants.(Citation: Dell P2P ZeuS)",
+    "source_ref": "malware--b2c5d3ca-b43a-4888-ad8d-e2d43497bf85",
+    "target_ref": "attack-pattern--f7c0689c-4dbd-489b-81be-7cb7c7079ade"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--b362f3b1-e040-4861-a758-07ff1fae0c0f",
+    "created": "2021-06-15T15:30:31.141979Z",
+    "modified": "2021-06-15T15:30:31.141979Z",
+    "relationship_type": "uses",
+    "description": "[PLEAD](https://attack.mitre.org/software/S0435) samples were found to be highly obfuscated with junk code.(Citation: ESET PLEAD Malware July 2018)",
+    "source_ref": "malware--b57f419e-8b12-49d3-886b-145383725dcd",
+    "target_ref": "attack-pattern--f7c0689c-4dbd-489b-81be-7cb7c7079ade"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--da169fe2-3e96-43d9-a882-46d8a1a46f47",
+    "created": "2021-06-15T15:30:31.141979Z",
+    "modified": "2021-06-15T15:30:31.141979Z",
+    "relationship_type": "uses",
+    "description": "[Carbon](https://attack.mitre.org/software/S0335) runs the <code>net group</code> command to list accounts on the system.",
+    "source_ref": "malware--b7e9880a-7a7c-4162-bddb-e28e8ef2bf1f",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--644fe5ea-f716-4994-954f-8e3380544d53",
+    "created": "2021-06-15T15:30:31.142965Z",
+    "modified": "2021-06-15T15:30:31.142965Z",
+    "relationship_type": "uses",
+    "description": "[Kwampirs](https://attack.mitre.org/software/S0236) collects a list of accounts with the command <code>net users</code>.",
+    "source_ref": "malware--c2417bab-3189-4d4d-9d60-96de2cdaf0ab",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--e1811ead-6f82-40da-8551-0405d2dd3341",
+    "created": "2021-06-15T15:30:31.142965Z",
+    "modified": "2021-06-15T15:30:31.142965Z",
+    "relationship_type": "uses",
+    "description": "[JPIN](https://attack.mitre.org/software/S0201) can use the command-line utility cacls.exe to change file permissions.(Citation: Microsoft PLATINUM April 2016)",
+    "source_ref": "malware--de6cb631-52f6-4169-a73b-7965390b0c30",
+    "target_ref": "attack-pattern--34e793de-0274-4982-9c1a-246ed1c19dee"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--38989dc1-89cc-4412-946b-c353c24dbd87",
+    "created": "2021-06-15T15:30:31.143965Z",
+    "modified": "2021-06-15T15:30:31.143965Z",
+    "relationship_type": "uses",
+    "description": "[Mis-Type](https://attack.mitre.org/software/S0084) may create a file containing the results of the command <code>cmd.exe /c net user {Username}</code>.",
+    "source_ref": "malware--e1161124-f22e-487f-9d5f-ed8efc8dcd61",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--0898dc8c-403f-46a4-99bf-27bb0f2bf9cc",
+    "created": "2021-06-15T15:30:31.143965Z",
+    "modified": "2021-06-15T15:30:31.143965Z",
+    "relationship_type": "uses",
+    "description": "[Agent Tesla](https://attack.mitre.org/software/S0331) collects account information from the victim\u2019s machine.",
+    "source_ref": "malware--e7a5229f-05eb-440e-b982-9a6d2b2b87c8",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--d36a0927-ba00-4359-8725-0809d1e3612f",
+    "created": "2021-06-15T15:30:31.144965Z",
+    "modified": "2021-06-15T15:30:31.144965Z",
+    "relationship_type": "uses",
+    "description": "[POWERSTATS](https://attack.mitre.org/software/S0223) can retrieve usernames from compromised hosts.",
+    "source_ref": "malware--e8545794-b98c-492b-a5b3-4b5a02682e37",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--a0b00c9d-3b12-41f7-ab3e-763f89453c62",
+    "created": "2021-06-15T15:30:31.144965Z",
+    "modified": "2021-06-15T15:30:31.144965Z",
+    "relationship_type": "uses",
+    "description": "[POWERTON](https://attack.mitre.org/software/S0371) can use WMI for persistence.(Citation: FireEye APT33 Guardrail)",
+    "source_ref": "malware--e85cae1a-bce3-4ac4-b36b-b00acac0567b",
+    "target_ref": "attack-pattern--910906dd-8c0a-475a-9cc1-5e029e2fad58"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--80058c36-bc30-42de-91fc-46eeec7bdfd5",
+    "created": "2021-06-15T15:30:31.145965Z",
+    "modified": "2021-06-15T15:30:31.145965Z",
+    "relationship_type": "uses",
+    "description": "[Comnie](https://attack.mitre.org/software/S0244) uses the <code>net user</code> command.",
+    "source_ref": "malware--f4c80d39-ce10-4f74-9b50-a7e3f5df1f2e",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--aac8ed45-5bda-4ff1-9b04-0b204f59be5c",
+    "created": "2021-06-15T15:30:31.145965Z",
+    "modified": "2021-06-15T15:30:31.145965Z",
+    "relationship_type": "uses",
+    "description": "[OSInfo](https://attack.mitre.org/software/S0165) enumerates local and domain users",
+    "source_ref": "malware--f6d1d2cb-12f5-4221-9636-44606ea1f3f8",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--7f9aab89-a3e3-4bd6-8e26-3d0e963b67fa",
+    "created": "2021-06-15T15:30:31.146965Z",
+    "modified": "2021-06-15T15:30:31.146965Z",
+    "relationship_type": "uses",
+    "description": "Commands under <code>net user</code> can be used in [Net](https://attack.mitre.org/software/S0039) to gather information about and manipulate user accounts.",
+    "source_ref": "tool--03342581-f790-4f03-ba41-e82e67392e23",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--a94fe85e-7a31-4b1b-aae7-244b736c9eb3",
+    "created": "2021-06-15T15:30:31.147296Z",
+    "modified": "2021-06-15T15:30:31.147296Z",
+    "relationship_type": "uses",
+    "description": "[at](https://attack.mitre.org/software/S0110) can be used to schedule a task on a system.(Citation: TechNet At)",
+    "source_ref": "tool--0c8465c0-d0b4-4670-992e-4eee8d7ff952",
+    "target_ref": "attack-pattern--f3d95a1f-bba2-44ce-9af7-37866cd63fd0"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--c9dff191-e150-4502-9d09-94245084c174",
+    "created": "2021-06-15T15:30:31.147296Z",
+    "modified": "2021-06-15T15:30:31.147296Z",
+    "relationship_type": "uses",
+    "description": "[ShimRatReporter](https://attack.mitre.org/software/S0445) listed all non-privileged and privileged accounts available on the machine.(Citation: FOX-IT May 2016 Mofang)",
+    "source_ref": "tool--115f88dd-0618-4389-83cb-98d33ae81848",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--6b6a5ad2-8bcc-4ed3-b18f-d9937690a233",
+    "created": "2021-06-15T15:30:31.148319Z",
+    "modified": "2021-06-15T15:30:31.148319Z",
+    "relationship_type": "uses",
+    "description": "[PowerSploit](https://attack.mitre.org/software/S0194)'s <code>Get-ProcessTokenGroup</code> Privesc-PowerUp module can enumerate all SIDs associated with its current token.",
+    "source_ref": "tool--13cd9151-83b7-410d-9f98-25d0f0d1d80d",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--3c8d2cf3-f227-40b2-a020-b0584afef99f",
+    "created": "2021-06-15T15:30:31.148319Z",
+    "modified": "2021-06-15T15:30:31.148319Z",
+    "relationship_type": "uses",
+    "description": "[Empire](https://attack.mitre.org/software/S0363) can acquire local and domain user account information.",
+    "source_ref": "tool--3433a9e8-1c47-4320-b9bf-ed449061d1c3",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--6a75b75a-4dc9-4bf6-a5b1-1e6f473e4590",
+    "created": "2021-06-15T15:30:31.149318Z",
+    "modified": "2021-06-15T15:30:31.149318Z",
+    "relationship_type": "uses",
+    "description": "[dsquery](https://attack.mitre.org/software/S0105) can be used to gather information on user accounts within a domain.",
+    "source_ref": "tool--38952eac-cb1b-4a71-bad2-ee8223a1c8fe",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--9711dbe2-0f57-4914-b2c7-7d73f0707727",
+    "created": "2021-06-15T15:30:31.149318Z",
+    "modified": "2021-06-15T15:30:31.149318Z",
+    "relationship_type": "uses",
+    "description": "[PoshC2](https://attack.mitre.org/software/S0378) can enumerate local and domain user account information.",
+    "source_ref": "tool--4b57c098-f043-4da2-83ef-7588a6d426bc",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--8cd7bab5-6973-4fff-955c-9a436406b579",
+    "created": "2021-06-15T15:30:31.150318Z",
+    "modified": "2021-06-15T15:30:31.150318Z",
+    "relationship_type": "uses",
+    "description": "[MailSniper](https://attack.mitre.org/software/S0413) can be used to obtain account names from Exchange and Office 365 using the <code>Get-GlobalAddressList</code> cmdlet.",
+    "source_ref": "tool--999c4e6e-b8dc-4b4f-8d6e-1b829f29997e",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--7dcea400-a610-437b-93e8-6392b36051a2",
+    "created": "2021-06-15T15:30:31.150318Z",
+    "modified": "2021-06-15T15:30:31.150318Z",
+    "relationship_type": "uses",
+    "description": "[CrackMapExec](https://attack.mitre.org/software/S0488) can set a scheduled task on the target system to execute commands remotely using [at](https://attack.mitre.org/software/S0110).(Citation: CME Github September 2018)",
+    "source_ref": "tool--c4810609-7da6-48ec-8057-1b70a7814db0",
+    "target_ref": "attack-pattern--f3d95a1f-bba2-44ce-9af7-37866cd63fd0"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--03c6786a-c255-48ca-a6a5-97716cfbe6d0",
+    "created": "2021-06-15T15:30:31.151318Z",
+    "modified": "2021-06-15T15:30:31.151318Z",
+    "relationship_type": "uses",
+    "description": "[Pupy](https://attack.mitre.org/software/S0192) uses PowerView and Pywerview to perform discovery commands such as net user, net group, net local group, etc.",
+    "source_ref": "tool--cb69b20d-56d0-41ab-8440-4a4b251614d4",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--f22fd26e-2345-4946-b8a9-4c21ae49a14b",
+    "created": "2021-06-15T15:30:31.151318Z",
+    "modified": "2021-06-15T15:30:31.151318Z",
+    "relationship_type": "next",
+    "description": "description",
+    "source_ref": "attack-pattern--8982a661-d84c-48c0-b4ec-1db29c6cf3bc",
+    "target_ref": "attack-pattern--6151cbea-819b-455a-9fa6-99a1cc58797d"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--5184e745-a744-44fd-881b-058f51a48b36",
+    "created": "2021-06-15T15:30:31.152318Z",
+    "modified": "2021-06-15T15:30:31.152318Z",
+    "relationship_type": "next",
+    "description": "description",
+    "source_ref": "attack-pattern--6151cbea-819b-455a-9fa6-99a1cc58797d",
+    "target_ref": "attack-pattern--f3d95a1f-bba2-44ce-9af7-37866cd63fd0"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--c532c6f6-ab2c-425b-81cf-0496d900415b",
+    "created": "2021-06-15T15:30:31.152318Z",
+    "modified": "2021-06-15T15:30:31.152318Z",
+    "relationship_type": "next",
+    "description": "description",
+    "source_ref": "attack-pattern--f3d95a1f-bba2-44ce-9af7-37866cd63fd0",
+    "target_ref": "attack-pattern--910906dd-8c0a-475a-9cc1-5e029e2fad58"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--a177b4c4-fe65-49aa-b434-833702cadb85",
+    "created": "2021-06-15T15:30:31.152318Z",
+    "modified": "2021-06-15T15:30:31.152318Z",
+    "relationship_type": "next",
+    "description": "description",
+    "source_ref": "attack-pattern--910906dd-8c0a-475a-9cc1-5e029e2fad58",
+    "target_ref": "attack-pattern--34e793de-0274-4982-9c1a-246ed1c19dee"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--6bc4d000-9110-4c1e-9d0b-2e1cf1daf75f",
+    "created": "2021-06-15T15:30:31.153318Z",
+    "modified": "2021-06-15T15:30:31.153318Z",
+    "relationship_type": "next",
+    "description": "description",
+    "source_ref": "attack-pattern--34e793de-0274-4982-9c1a-246ed1c19dee",
+    "target_ref": "attack-pattern--b2d03cea-aec1-45ca-9744-9ee583c1e1cc"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--1bbb487c-0c49-42b9-bab7-3366ca268f30",
+    "created": "2021-06-15T15:30:31.153318Z",
+    "modified": "2021-06-15T15:30:31.153318Z",
+    "relationship_type": "next",
+    "description": "description",
+    "source_ref": "attack-pattern--b2d03cea-aec1-45ca-9744-9ee583c1e1cc",
+    "target_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--b69e7cf6-bfbd-4db8-8e90-c092e2df4ff8",
+    "created": "2021-06-15T15:30:31.154318Z",
+    "modified": "2021-06-15T15:30:31.154318Z",
+    "relationship_type": "next",
+    "description": "description",
+    "source_ref": "attack-pattern--72b74d71-8169-42aa-92e0-e7b04b9f5a08",
+    "target_ref": "attack-pattern--f7c0689c-4dbd-489b-81be-7cb7c7079ade"
+} ,
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--81e33ace-6207-403f-8f01-1892baf80022",
+    "created": "2021-06-15T15:30:31.154318Z",
+    "modified": "2021-06-15T15:30:31.154318Z",
+    "relationship_type": "next",
+    "description": "description",
+    "source_ref": "attack-pattern--f7c0689c-4dbd-489b-81be-7cb7c7079ade",
+    "target_ref": "attack-pattern--36b2a1d7-e09e-49bf-b45e-477076c2ec01"
+}
+]
+}
