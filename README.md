@@ -7,7 +7,7 @@
 * [Ejecución](#ejecución)
 
 ## Información General
-El programa APTModelGenerator tiene como objetivo, trabajar sobre la generación y simulación de modelos formales, parametrizables y aleatorios de APTs según el estándar MITRE. La creación de dicho progrmama tiene como finalidad formar parte de un proyecto de mayor escala conocido como COBRA orientado al desarrollo de  cibermaniobras adaptables y personalizables de simulación hiperrealista de APT y entrenamiento en ciberdefensa a través de la gamificación.
+El programa APTModelGenerator tiene como objetivo trabajar sobre la generación y simulación de modelos formales, parametrizables y aleatorios de APTs según el estándar MITRE. La creación de dicho progrmama tiene como finalidad formar parte de un proyecto de mayor escala conocido como COBRA orientado al desarrollo de  cibermaniobras adaptables y personalizables de simulación hiperrealista de APT y entrenamiento en ciberdefensa a través de la gamificación.
 
 ## Tecnologías
 El proyecto se ha creado utilizando las siguientes tecnologías:
