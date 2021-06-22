@@ -7,8 +7,8 @@
 * [Ejecución](#ejecución)
 
 ## Información General
+El programa APTModelGenerator tiene como objetivo, trabajar sobre la generación y simulación de modelos formales, parametrizables y aleatorios de APTs según el estándar MITRE. La creación de dicho progrmama tiene como finalidad formar parte de un proyecto de mayor escala conocido como COBRA orientado al desarrollo de  cibermaniobras adaptables y personalizables de simulación hiperrealista de APT y entrenamiento en ciberdefensa a través de la gamificación.
 
-El proyecto APTModelGenerator tiene como objetivo, trabajar sobre la generación y simulación de modelos formales, parametrizables y aleatorios de APTs según el estándar MITRE.
 ## Tecnologías
 El proyecto se ha creado utilizando las siguientes tecnologías:
 * Python versión ````3.7.9````
@@ -19,12 +19,9 @@ El proyecto se ha creado utilizando las siguientes tecnologías:
 Para el arranque del proyecto deberá:
 * Instalar librería sqlite3.
 ```$ pip install sqlite3```
-
 * Instalar librería python-stix2.
 ```$ pip install stix2```
-
 **Nota:** La librería require una versión de Python 3.6+. Para obtener documentación más detallada, consulte el repositorio [cti-python-stix2](https://github.com/oasis-open/cti-python-stix2) gestionado por el Comité Técnico de Inteligencia de Ciberamenazas de OASIS.
-
 * Clonar el repositorio [ATTACK-Tools](https://github.com/nshalabi/ATTACK-Tools.git).
 
 ## Ejecución
