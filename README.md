@@ -1,6 +1,6 @@
 # APT Model Generator
 
-## Table of contents
+## Tabla de contenido
 * [Información general](#información-general)
 * [Tecnologías](#tecnologías)
 * [Instalación](#instalación)
