@@ -24,7 +24,7 @@ Para el arranque del proyecto deberá:
 **Nota:** La librería require una versión de Python 3.6+. Para obtener documentación más detallada, consulte el repositorio [cti-python-stix2](https://github.com/oasis-open/cti-python-stix2) gestionado por el Comité Técnico de Inteligencia de Ciberamenazas de OASIS.
 
 ## Ejecución
-Previo a la ejecución, será necesario modificar la dirección en la que se almacena la base de datos dentro en el equipo local. Deberá introducir en ```APTModelGenerator``` la ruta completa del fichero ```APT_data_Model.sqlite```.
+Previo a la ejecución, será necesario modificar la dirección en la que se almacena la base de datos dentro en el equipo local. Deberá introducir en ```APTModelGenerator``` la ruta completa del fichero ```APT_Data_Model_ddbb.sqlite```.
 
 Una vez instaldo el programa y realizados los cambios anterioriormente descritos, se podrá ejecutar desde el terminal con el siguiente comando.
 
