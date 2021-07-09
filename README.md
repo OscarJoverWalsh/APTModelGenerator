@@ -22,10 +22,9 @@ Para el arranque del proyecto deberá:
 * Instalar librería python-stix2.
 ```$ pip install stix2```
 **Nota:** La librería require una versión de Python 3.6+. Para obtener documentación más detallada, consulte el repositorio [cti-python-stix2](https://github.com/oasis-open/cti-python-stix2) gestionado por el Comité Técnico de Inteligencia de Ciberamenazas de OASIS.
-* Clonar el repositorio [ATTACK-Tools](https://github.com/nshalabi/ATTACK-Tools.git).
 
 ## Ejecución
-Previo a la ejecución, será necesario modificar la dirección en la que se almacena la base de datos dentro en el equipo local. Deberá introducir en ```APTModelGenerator``` la ruta completa del fichero ```attack_view_db.sqlite```.
+Previo a la ejecución, será necesario modificar la dirección en la que se almacena la base de datos dentro en el equipo local. Deberá introducir en ```APTModelGenerator``` la ruta completa del fichero ```APT_data_Model.sqlite```.
 
 Una vez instaldo el programa y realizados los cambios anterioriormente descritos, se podrá ejecutar desde el terminal con el siguiente comando.
 
